@@ -1,0 +1,25 @@
+﻿using Api_Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Api_Domain.Interfaces
+{
+    // Repository trabalhando no modo genérico.
+    // Será injetado dentro de T uma classe que tenha herança de base entity.
+    public interface IRepository<T> where T:BaseEntity
+    {
+        Task<T> InsertAsync(T item);
+        Task<T> UpdateAsync(T item);
+        Task<bool> DeleteAsync(Guid id);
+        Task<T> SelectAsync(Guid id);
+        Task<IEnumerable<T>> SelectAsync();
+    }
+
+    /*
+     Isso significa uma assinatura, ela prevê que a classe que herdar dela, contenha todos esses métodos descritos acima.
+     
+     */
+}
